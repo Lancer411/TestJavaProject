@@ -2,6 +2,7 @@ package com.example;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -17,9 +18,21 @@ public class MyResource {
      *
      * @return String that will be returned as a text/plain response.
      */
+    @Path("/connect/{address}")
     @GET
     @Produces(MediaType.TEXT_PLAIN)
+    public String getIt(@PathParam("address") String address) {
+        return CassandraConnection.testConnect(address);
+    }
+    @Path("/connect/{address}/{port}")
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getIt(@PathParam("address") String address,
+                        @PathParam("port") String port) {
+        return CassandraConnection.testConnect(address, Integer.parseInt(port));
+    }
+
     public String getIt() {
-        return CassandraConnection.testConnect("10.50.14.43");
+        return "Hello cruel world!";
     }
 }
