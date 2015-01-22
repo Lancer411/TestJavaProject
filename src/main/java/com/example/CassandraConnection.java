@@ -11,6 +11,31 @@ import com.datastax.driver.core.querybuilder.QueryBuilder;
 
 public class CassandraConnection {
 
+    public static String testConnect(String address)
+    {
+        String answer = "";
+
+        //ResultSet results;
+        //Row rows;
+
+        // Connect to the cluster and keyspace "demo"
+        String keyspace = "system";
+
+        Cluster cluster = Cluster.builder()
+                .addContactPoints(address)
+                .build();
+
+        Session session = cluster.connect(keyspace);
+        Metadata metadata = cluster.getMetadata();
+        answer +="Connected to cluster: metadata.getClusterName()\n";
+        for ( Host host : metadata.getAllHosts() ) {
+            answer +="Datacenter: host.getDatacenter(); Host: host.getAddress(); Rack: host.getRack()\n";
+        }
+        cluster.close();
+        return answer;
+    }
+
+
     public static String testConnect(String address, int port) {
 
         String answer = "";

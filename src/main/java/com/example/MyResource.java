@@ -20,6 +20,6 @@ public class MyResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getIt() {
-        return CassandraConnection.testConnect("10.50.14.43", 9160);
+        return CassandraConnection.testConnect("10.50.14.43");
     }
 }
