@@ -22,14 +22,17 @@ public class MyResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getIt(@PathParam("address") String address) {
-        return CassandraConnection.testConnect(address);
+
+        //return //CassandraConnection.testConnect(address);
+        return "Stub";
     }
     @Path("/connect/{address}/{port}")
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getIt(@PathParam("address") String address,
                         @PathParam("port") String port) {
-        return CassandraConnection.testConnect(address, Integer.parseInt(port));
+        //return CassandraConnection.testConnect(address, Integer.parseInt(port));
+        return Boolean.toString(CheckPort.scan(address, Integer.parseInt(port)));
     }
 
     public String getIt() {
