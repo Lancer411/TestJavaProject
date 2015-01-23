@@ -52,7 +52,7 @@ public class CassandraConnection {
 
         Session session = cluster.connect(keyspace);
         Metadata metadata = cluster.getMetadata();
-        answer += "Connected to cluster: metadata.getClusterName()\n";
+        answer += "Connected to cluster: " + metadata.getClusterName()  + "\n";
         for (Host host : metadata.getAllHosts()) {
             answer += "Datacenter: " + host.getDatacenter() + "  Host: " + host.getAddress() + " Rack:" + host.getRack() + "\n";
         }
