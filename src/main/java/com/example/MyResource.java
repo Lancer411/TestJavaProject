@@ -34,7 +34,9 @@ public class MyResource {
         //return CassandraConnection.testConnect(address, Integer.parseInt(port));
         return Boolean.toString(CheckPort.scan(address, Integer.parseInt(port)));
     }
-
+    @Path("/hello")
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
     public String getIt() {
         return "Hello cruel world!";
     }
