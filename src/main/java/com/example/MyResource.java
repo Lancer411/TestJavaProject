@@ -23,16 +23,19 @@ public class MyResource {
     @Produces(MediaType.TEXT_PLAIN)
     public String getIt(@PathParam("address") String address) {
 
-        //return //CassandraConnection.testConnect(address);
-        return "Stub";
+        return CassandraConnection.testConnect(address);
+        //return "Stub";
     }
     @Path("/connect/{address}/{port}")
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getIt(@PathParam("address") String address,
                         @PathParam("port") String port) {
-        //return CassandraConnection.testConnect(address, Integer.parseInt(port));
-        return Boolean.toString(CheckPort.scan(address, Integer.parseInt(port)));
+        boolean connectResult = CheckPort.scan(address, Integer.parseInt(port));
+        if(connectResult)
+               return CassandraConnection.testConnect(address, Integer.parseInt(port));
+        else
+                return  Boolean.toString(connectResult);
     }
     @Path("/hello")
     @GET
@@ -40,4 +43,6 @@ public class MyResource {
     public String getIt() {
         return "Hello cloud world!";
     }
+
+
 }
