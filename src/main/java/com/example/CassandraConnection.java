@@ -3,16 +3,15 @@ package com.example;
 /**
  * Created by SIvantsov on 22.01.2015.
  */
-import com.datastax.driver.core.*;
-import com.datastax.driver.core.policies.DCAwareRoundRobinPolicy;
-import com.datastax.driver.core.policies.DefaultRetryPolicy;
-import com.datastax.driver.core.policies.TokenAwarePolicy;
-import com.datastax.driver.core.querybuilder.QueryBuilder;
+
+import com.datastax.driver.core.Cluster;
+import com.datastax.driver.core.Host;
+import com.datastax.driver.core.Metadata;
+import com.datastax.driver.core.Session;
 
 public class CassandraConnection {
 
-    public static String testConnect(String address)
-    {
+    public static String testConnect(String address) {
         String answer = "";
 
         //ResultSet results;
@@ -27,9 +26,9 @@ public class CassandraConnection {
 
         Session session = cluster.connect(keyspace);
         Metadata metadata = cluster.getMetadata();
-        answer +="Connected to cluster: metadata.getClusterName()\n";
-        for ( Host host : metadata.getAllHosts() ) {
-            answer +="Datacenter: host.getDatacenter(); Host: host.getAddress(); Rack: host.getRack()\n";
+        answer += "Connected to cluster: metadata.getClusterName()\n";
+        for (Host host : metadata.getAllHosts()) {
+            answer += "Datacenter: host.getDatacenter(); Host: host.getAddress(); Rack: host.getRack()\n";
         }
         cluster.close();
         return answer;
@@ -53,9 +52,9 @@ public class CassandraConnection {
 
         Session session = cluster.connect(keyspace);
         Metadata metadata = cluster.getMetadata();
-        answer +="Connected to cluster: metadata.getClusterName()\n";
-        for ( Host host : metadata.getAllHosts() ) {
-            answer +="Datacenter: host.getDatacenter(); Host: host.getAddress(); Rack: host.getRack()\n";
+        answer += "Connected to cluster: metadata.getClusterName()\n";
+        for (Host host : metadata.getAllHosts()) {
+            answer += "Datacenter: " + host.getDatacenter() + "  Host: " + host.getAddress() + " Rack:" + host.getRack() + "\n";
         }
         cluster.close();
         return answer;
