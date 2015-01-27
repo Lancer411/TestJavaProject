@@ -5,6 +5,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.util.Map;
 
 /**
  * Root resource (exposed at "myresource" path)
@@ -37,6 +38,8 @@ public class MyResource {
         else
                 return  Boolean.toString(connectResult);
     }
+
+
     @Path("/hello")
     @GET
     @Produces(MediaType.TEXT_PLAIN)
@@ -44,5 +47,26 @@ public class MyResource {
         return "Hello cloud world!";
     }
 
-
+    @Path("/getEnvVar/{varName}")
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getVariable(@PathParam("varName") String variableName) {
+        String variable = System.getProperty(variableName);
+        if(variable == null) variable = "No such variable!";
+                else variable = variableName + " = " + variable;
+        return variable;
+    }
+    @Path("/getAllVars")
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getAllVariables() {
+        Map<String, String> environment = System.getenv();
+        String answer = "";
+        for(Map.Entry<String, String> entry : environment.entrySet())
+        {
+            answer += entry.getKey() + " = " + entry.getValue() + "\n";
+        }
+        if(answer.isEmpty()) answer = "No environment variables!";
+        return answer;
+    }
 }
