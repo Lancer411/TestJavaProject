@@ -43,8 +43,8 @@
 					<email>SIvantsov@luxoft.com</email>
 					<password>bKh6DUv1u8</password>
 					<context>REST</context>
-					<environment>env-8030410</environment>
-					<comment>[insert comment if you need it]</comment>
+					<environment>development</environment>
+					<comment>Testing</comment>
 					<api_hoster>app.demo.jelastic.com</api_hoster>
 				</configuration>
 			</plugin>

@@ -80,7 +80,7 @@ public class MyResource {
                 .setPort        ("5432")
                 .setDBName      ("PostgreSQL")
                 .setUsername    ("webadmin")
-                .setPassword    ("Npvx3MERzx")
+                .setPassword    ("YWpAbRjWTf")
                 .connect        ();
 
         return connection.testConnection();

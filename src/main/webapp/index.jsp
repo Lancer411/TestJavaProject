@@ -10,7 +10,7 @@
     <p><a href="webapi/myresource/connect/127.0.0.1/900">Cassandra connect with port</a>
     <p><a href="webapi/myresource/getEnvVar/test">Check environment variable</a>
     <p><a href="webapi/myresource/getAllVars">Get all environment variables</a>
-    <p><a href="webapi/myresource/posthre">Test Postgre Connection</a>
+    <p><a href="webapi/myresource/postgre">Test Postgre Connection</a>
 
     <p>Visit <a href="http://jersey.java.net">Project Jersey website</a>
     for more information on Jersey!
