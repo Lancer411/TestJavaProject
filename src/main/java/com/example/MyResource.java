@@ -72,9 +72,9 @@ public class MyResource {
     }
 
     @Path("/postgre")
-    @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String checkPostgreSQL() throws SQLException, ClassNotFoundException {
+        @GET
+        @Produces(MediaType.TEXT_PLAIN)
+        public String checkPostgreSQL() throws SQLException, ClassNotFoundException {
         PostgreConnection connection = PostgreConnection.builder()
                 .setHost        ("192.168.2.49")
                 .setPort        ("5432")
@@ -84,5 +84,29 @@ public class MyResource {
                 .connect        ();
 
         return connection.testConnection();
+    }
+
+    @Path("/postgreByConfig")
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public String checkPostgreSQLConnfectioByConf() throws SQLException, ClassNotFoundException {
+        PostgreConnection connection = PostgreConnection.builder()
+                .setHost        (System.getProperty("pg_ip"))
+                .setPort        (System.getProperty("pg_port"))
+                .setDBName      (System.getProperty("pg_database"))
+                .setUsername    (System.getProperty("pg_username"))
+                .setPassword(System.getProperty("pg_password"))
+                .connect();
+
+        return connection.testConnection();
+    }
+
+    @Path("/cassanrdaByConfig")
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public String checkCassandraConnectionByConf() {
+        return CassandraConnection.testConnect(
+                System.getProperty("cas_ip"),
+                Integer.parseInt(System.getProperty("cas_port")));
     }
 }
