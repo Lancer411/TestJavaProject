@@ -78,7 +78,7 @@ public class MyResource {
         PostgreConnection connection = PostgreConnection.builder()
                 .setHost        ("192.168.2.49")
                 .setPort        ("5432")
-                .setDBName      ("PostgreSQL")
+                .setDBName      ("postgres")
                 .setUsername    ("webadmin")
                 .setPassword    ("YWpAbRjWTf")
                 .connect        ();
