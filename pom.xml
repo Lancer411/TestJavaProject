@@ -42,6 +42,7 @@
 				 <configuration>
 					<email>SIvantsov@luxoft.com</email>
 					<password>bKh6DUv1u8</password>
+					<environment>${jelastic.environment}</environment>
 					<context>REST</context>
 					<comment>Testing</comment>
 					<api_hoster>app.demo.jelastic.com</api_hoster>
