@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class IT_PostgreConnectionTest {
+public class PostgreConnectionTest {
 
     @Test
     public void testTestConnection() throws Exception {

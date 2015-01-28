@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertNotNull;
 
-public class IT_CassandraConnectionTest {
+public class CassandraConnectionTest {
 
     @Test
     public void testTestConnect() throws Exception {
