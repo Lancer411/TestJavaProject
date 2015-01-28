@@ -45,7 +45,7 @@ public class MyResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getIt() {
-        return "Hello cloud world!";
+        return "Hello " + System.getProperty("env_name") + " world!";
     }
 
     @Path("/getEnvVar/{varName}")
