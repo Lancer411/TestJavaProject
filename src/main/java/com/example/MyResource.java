@@ -28,16 +28,17 @@ public class MyResource {
         return CassandraConnection.testConnect(address);
         //return "Stub";
     }
+
     @Path("/connect/{address}/{port}")
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getIt(@PathParam("address") String address,
                         @PathParam("port") String port) {
         boolean connectResult = CheckPort.scan(address, Integer.parseInt(port));
-        if(connectResult)
-               return CassandraConnection.testConnect(address, Integer.parseInt(port));
+        if (connectResult)
+            return CassandraConnection.testConnect(address, Integer.parseInt(port));
         else
-                return  Boolean.toString(connectResult);
+            return Boolean.toString(connectResult);
     }
 
 
@@ -53,35 +54,35 @@ public class MyResource {
     @Produces(MediaType.TEXT_PLAIN)
     public String getVariable(@PathParam("varName") String variableName) {
         String variable = System.getProperty(variableName);
-        if(variable == null) variable = "No such variable!";
-                else variable = variableName + " = " + variable;
+        if (variable == null) variable = "No such variable!";
+        else variable = variableName + " = " + variable;
         return variable;
     }
+
     @Path("/getAllVars")
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getAllVariables() {
         Map<String, String> environment = System.getenv();
         String answer = "";
-        for(Map.Entry<String, String> entry : environment.entrySet())
-        {
+        for (Map.Entry<String, String> entry : environment.entrySet()) {
             answer += entry.getKey() + " = " + entry.getValue() + "\n";
         }
-        if(answer.isEmpty()) answer = "No environment variables!";
+        if (answer.isEmpty()) answer = "No environment variables!";
         return answer;
     }
 
     @Path("/postgre")
-        @GET
-        @Produces(MediaType.TEXT_PLAIN)
-        public String checkPostgreSQL() throws SQLException, ClassNotFoundException {
-        PostgreConnection connection = PostgreConnection.builder()
-                .setHost        ("192.168.2.49")
-                .setPort        ("5432")
-                .setDBName      ("postgres")
-                .setUsername    ("webadmin")
-                .setPassword    ("Npvx3MERzx")
-                .connect        ();
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public String checkPostgreSQL() throws SQLException, ClassNotFoundException {
+        PostgresConnection connection = PostgresConnection.builder()
+                .setHost("192.168.2.49")
+                .setPort("5432")
+                .setDBName("postgres")
+                .setUsername("webadmin")
+                .setPassword("Npvx3MERzx")
+                .connect();
 
         return connection.testConnection();
     }
@@ -90,11 +91,11 @@ public class MyResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String checkPostgreSQLConnfectioByConf() throws SQLException, ClassNotFoundException {
-        PostgreConnection connection = PostgreConnection.builder()
-                .setHost        (System.getProperty("pg_ip"))
-                .setPort        (System.getProperty("pg_port"))
-                .setDBName      (System.getProperty("pg_database"))
-                .setUsername    (System.getProperty("pg_username"))
+        PostgresConnection connection = PostgresConnection.builder()
+                .setHost(System.getProperty("pg_ip"))
+                .setPort(System.getProperty("pg_port"))
+                .setDBName(System.getProperty("pg_database"))
+                .setUsername(System.getProperty("pg_username"))
                 .setPassword(System.getProperty("pg_password"))
                 .connect();
 
@@ -108,5 +109,42 @@ public class MyResource {
         return CassandraConnection.testConnect(
                 System.getProperty("cas_ip"),
                 Integer.parseInt(System.getProperty("cas_port")));
+    }
+
+    @Path("/cassandraTest")
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public boolean testCassandra() {
+        String result;
+        try {
+            result = CassandraConnection.testConnect(
+                    System.getProperty("cas_ip"),
+                    Integer.parseInt(System.getProperty("cas_port")));
+
+        } catch (Exception e) {
+            return false;
+        }
+        return !result.isEmpty();
+    }
+
+    @Path("/postgresTest")
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public boolean testPostgre() {
+        PostgresConnection connection = null;
+        try {
+            connection = PostgresConnection.builder()
+                    .setHost(System.getProperty("pg_ip"))
+                    .setPort(System.getProperty("pg_port"))
+                    .setDBName(System.getProperty("pg_database"))
+                    .setUsername(System.getProperty("pg_username"))
+                    .setPassword(System.getProperty("pg_password"))
+                    .connect();
+            String result = connection.testConnection();
+            if (result.isEmpty()) return false;
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 }
