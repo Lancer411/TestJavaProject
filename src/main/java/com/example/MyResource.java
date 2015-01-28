@@ -5,6 +5,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.sql.SQLException;
 import java.util.Map;
 
 /**
@@ -68,5 +69,20 @@ public class MyResource {
         }
         if(answer.isEmpty()) answer = "No environment variables!";
         return answer;
+    }
+
+    @Path("/postgre")
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public String checkPostgreSQL() throws SQLException, ClassNotFoundException {
+        PostgreConnection connection = PostgreConnection.builder()
+                .setHost        ("192.168.2.49")
+                .setPort        ("5432")
+                .setDBName      ("PostgreSQL")
+                .setUsername    ("webadmin")
+                .setPassword    ("Npvx3MERzx")
+                .connect        ();
+
+        return connection.testConnection();
     }
 }

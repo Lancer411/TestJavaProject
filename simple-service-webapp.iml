@@ -37,12 +37,12 @@
     <orderEntry type="library" name="Maven: org.glassfish.jersey.core:jersey-server:2.15" level="project" />
     <orderEntry type="library" name="Maven: org.glassfish.jersey.core:jersey-client:2.15" level="project" />
     <orderEntry type="library" name="Maven: javax.validation:validation-api:1.1.0.Final" level="project" />
+    <orderEntry type="library" name="Maven: org.postgresql:postgresql:9.3-1102-jdbc41" level="project" />
     <orderEntry type="library" name="Maven: com.datastax.cassandra:cassandra-driver-core:2.0.8" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty:3.9.0.Final" level="project" />
     <orderEntry type="library" name="Maven: com.google.guava:guava:14.0.1" level="project" />
     <orderEntry type="library" name="Maven: com.codahale.metrics:metrics-core:3.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.5" level="project" />
-    <orderEntry type="library" name="Maven: com.datastax.cassandra:cassandra-driver-mapping:2.0.8" level="project" />
   </component>
 </module>
 
