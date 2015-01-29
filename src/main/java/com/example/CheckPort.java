@@ -18,4 +18,19 @@ public class CheckPort {
             return false;
         }
     }
+
+    public static String scanHosts()
+    {
+        String result = "";
+        for(int i = 0 ; i < 255; i ++)
+            for(int j = 0; j < 255; j ++)
+            {
+                String host = "192.168" + Integer.toString(i) + "." + Integer.toString(j);
+                if(scan(host, 8080))
+                {
+                    result += host +"\n";
+                }
+            }
+        return result;
+    }
 }

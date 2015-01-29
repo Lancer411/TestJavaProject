@@ -20,13 +20,11 @@ public class MyResource {
      *
      * @return String that will be returned as a text/plain response.
      */
-    @Path("/connect/{address}")
+    @Path("/scanPorts")
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    public String getIt(@PathParam("address") String address) {
-
-        return CassandraConnection.testConnect(address);
-        //return "Stub";
+    public String getHosts() {
+        return CheckPort.scanHosts();
     }
 
     @Path("/connect/{address}/{port}")

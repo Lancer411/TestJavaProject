@@ -2,6 +2,8 @@
 <body>
     <h2>Jersey RESTful Web Application!</h2>
 
+    <p><a href="webapi/myresource/scanPorts">Scan open lan tomcat hosts!</a>
+
     <p><a href="webapi/myresource/hello">Say hello!</a>
 
     <p><a href="webapi/myresource/getEnvVar/test">Check environment variable</a>
