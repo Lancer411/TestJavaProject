@@ -31,7 +31,7 @@ public class CheckPort {
                 if(scan(host, port))
                 {
                     result += host +"\n";
-                    logger.info("host" + Integer.toString(port));
+                    logger.info(host + ":" + Integer.toString(port));
                 }
             }
         return result;
