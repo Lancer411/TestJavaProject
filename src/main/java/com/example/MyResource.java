@@ -20,11 +20,11 @@ public class MyResource {
      *
      * @return String that will be returned as a text/plain response.
      */
-    @Path("/scanPorts")
+    @Path("/scanPorts/{port}")
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    public String getHosts() {
-        return CheckPort.scanHosts();
+    public String getHosts(@PathParam("port") String port) {
+        return CheckPort.scanHosts(Integer.parseInt(port));
     }
 
     @Path("/connect/{address}/{port}")
