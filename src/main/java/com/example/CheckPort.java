@@ -8,6 +8,7 @@ import java.io.IOException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.logging.Logger;
 
 public class CheckPort {
 
@@ -21,6 +22,7 @@ public class CheckPort {
 
     public static String scanHosts(int port)
     {
+        Logger logger = Logger.getLogger("Host Scanner");
         String result = "";
         for(int i = 0 ; i < 255; i ++)
             for(int j = 0; j < 255; j ++)
@@ -29,6 +31,7 @@ public class CheckPort {
                 if(scan(host, port))
                 {
                     result += host +"\n";
+                    logger.info("host" + Integer.toString(port));
                 }
             }
         return result;
