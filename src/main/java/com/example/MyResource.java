@@ -72,7 +72,7 @@ public class MyResource {
         return answer;
     }
 
-    @Path("/postgre")
+    @Path("/postgres")
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String checkPostgreSQL() throws SQLException, ClassNotFoundException {
@@ -87,7 +87,7 @@ public class MyResource {
         return connection.testConnection();
     }
 
-    @Path("/postgreByConfig")
+    @Path("/postgresByConfig")
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String checkPostgreSQLConnfectioByConf() throws SQLException, ClassNotFoundException {
@@ -102,7 +102,7 @@ public class MyResource {
         return connection.testConnection();
     }
 
-    @Path("/cassanrdaByConfig")
+    @Path("/cassandraByConfig")
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String checkCassandraConnectionByConf() {
