@@ -2,6 +2,9 @@
 <body>
     <h2>Jersey RESTful Web Application!</h2>
 
+    <p><a href="webapi/myresource/JelasticProperties">Switch to Jelastic Property Getter</a>
+    <p><a href="webapi/myresource/CloudFoundryProperties">Switch to CloudFoundry Property Getter</a>
+
     <p><a href="webapi/myresource/scanPorts/8080">Scan open lan tomcat hosts!</a>
 
     <p><a href="webapi/myresource/hello">Say hello!</a>

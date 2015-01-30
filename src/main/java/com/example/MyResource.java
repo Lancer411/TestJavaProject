@@ -146,4 +146,19 @@ public class MyResource {
         }
         return true;
     }
+
+    @Path("/JelasticProperties")
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public String setJelasticProperties() {
+        PropertyProvider.setGetter(new JelasticGetter());
+        return "Jelastic property getter set!";
+    }
+    @Path("/CloudFoundryProperties")
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public String setCloudFoudnryGetter(){
+        PropertyProvider.setGetter(new CloudFoundryGetter());
+        return "CloudFoundry property getter set!";
+    }
 }

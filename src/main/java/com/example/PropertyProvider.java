@@ -26,4 +26,12 @@ public class PropertyProvider{
         }
         return instance;
     }
+
+    public static void setGetter(PropertyGetter getter) {
+        getInstance().setPropertyGetter(getter);
+    }
+    private void setPropertyGetter(PropertyGetter getter)
+    {
+        this.propertyGetter = getter;
+    }
 }
