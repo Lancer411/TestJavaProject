@@ -22,7 +22,10 @@ public class PropertyProvider{
         if(instance == null) {
             new PropertyProvider();
             //change this to JelasticGetter to get another realisation
-            propertyGetter = new CloudFoundryGetter();
+            if(System.getenv("TOMCAT_USER") == "tomcat")
+                propertyGetter = new JelasticGetter();
+            else
+                propertyGetter = new CloudFoundryGetter();
         }
         return instance;
     }
