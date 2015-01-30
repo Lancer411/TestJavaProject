@@ -48,6 +48,34 @@
 					<api_hoster>app.demo.jelastic.com</api_hoster>
 				</configuration>
 			</plugin>
+			<plugin>
+                <groupId>org.cloudfoundry</groupId>
+                <artifactId>cf-maven-plugin</artifactId>
+                <version>1.0.1</version>
+                <configuration>
+                    <target>https://api.run.pivotal.io</target>
+					<org>myTest-project.org</org>
+                    <space>development</space>
+                    <url>developmentWar.cfapps.io</url>
+                    <memory>512</memory>
+                    <instances>1</instances>
+					<username>skidivay@gmail.com</username>
+					<password>debuborger411GGLOL</password>
+                    <env>
+                        <greeting>Hello</greeting>
+                    </env>
+
+                    <services>
+                        <service>
+                            <name>app-db</name>
+                            <label>elephantsql</label>
+                            <provider>elephantsql</provider>
+                            <version>n/a</version>
+                            <plan>turtle</plan>
+                        </service>
+                    </services>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 	

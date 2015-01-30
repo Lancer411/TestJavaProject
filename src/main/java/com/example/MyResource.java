@@ -44,14 +44,14 @@ public class MyResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getIt() {
-        return "Hello " + System.getProperty("env_name") + " world!";
+        return "Hello " + PropertyProvider.getStaticProperty("env_name") + " world!";
     }
 
     @Path("/getEnvVar/{varName}")
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getVariable(@PathParam("varName") String variableName) {
-        String variable = System.getProperty(variableName);
+        String variable = PropertyProvider.getStaticProperty(variableName);
         if (variable == null) variable = "No such variable!";
         else variable = variableName + " = " + variable;
         return variable;
@@ -68,6 +68,15 @@ public class MyResource {
         }
         if (answer.isEmpty()) answer = "No environment variables!";
         return answer;
+    }
+
+    @Path("/getSystemVar/{varName}")
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getAllVariables(@PathParam("varName") String variableName) {
+
+        Map<String, String> environment = System.getenv();
+        return environment.get(variableName);
     }
 
     @Path("/postgres")
@@ -90,11 +99,11 @@ public class MyResource {
     @Produces(MediaType.TEXT_PLAIN)
     public String checkPostgreSQLConnfectioByConf() throws SQLException, ClassNotFoundException {
         PostgresConnection connection = PostgresConnection.builder()
-                .setHost(System.getProperty("pg_ip"))
-                .setPort(System.getProperty("pg_port"))
-                .setDBName(System.getProperty("pg_database"))
-                .setUsername(System.getProperty("pg_username"))
-                .setPassword(System.getProperty("pg_password"))
+                .setHost(PropertyProvider.getStaticProperty("pg_ip"))
+                .setPort(PropertyProvider.getStaticProperty("pg_port"))
+                .setDBName(PropertyProvider.getStaticProperty("pg_database"))
+                .setUsername(PropertyProvider.getStaticProperty("pg_username"))
+                .setPassword(PropertyProvider.getStaticProperty("pg_password"))
                 .connect();
 
         return connection.testConnection();
@@ -105,8 +114,8 @@ public class MyResource {
     @Produces(MediaType.TEXT_PLAIN)
     public String checkCassandraConnectionByConf() {
         return CassandraConnection.testConnect(
-                System.getProperty("cas_ip"),
-                Integer.parseInt(System.getProperty("cas_port")));
+                PropertyProvider.getStaticProperty("cas_ip"),
+                Integer.parseInt(PropertyProvider.getStaticProperty("cas_port")));
     }
 
     @Path("/cassandraTest")
@@ -116,8 +125,8 @@ public class MyResource {
         String result;
         try {
             result = CassandraConnection.testConnect(
-                    System.getProperty("cas_ip"),
-                    Integer.parseInt(System.getProperty("cas_port")));
+                    PropertyProvider.getStaticProperty("cas_ip"),
+                    Integer.parseInt(PropertyProvider.getStaticProperty("cas_port")));
 
         } catch (Exception e) {
             return false;
@@ -132,11 +141,11 @@ public class MyResource {
         PostgresConnection connection = null;
         try {
             connection = PostgresConnection.builder()
-                    .setHost(System.getProperty("pg_ip"))
-                    .setPort(System.getProperty("pg_port"))
-                    .setDBName(System.getProperty("pg_database"))
-                    .setUsername(System.getProperty("pg_username"))
-                    .setPassword(System.getProperty("pg_password"))
+                    .setHost(PropertyProvider.getStaticProperty("pg_ip"))
+                    .setPort(PropertyProvider.getStaticProperty("pg_port"))
+                    .setDBName(PropertyProvider.getStaticProperty("pg_database"))
+                    .setUsername(PropertyProvider.getStaticProperty("pg_username"))
+                    .setPassword(PropertyProvider.getStaticProperty("pg_password"))
                     .connect();
             String result = connection.testConnection();
             if (result.isEmpty()) return false;
