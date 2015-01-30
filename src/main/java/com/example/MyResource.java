@@ -70,14 +70,6 @@ public class MyResource {
         return answer;
     }
 
-    @Path("/getSystemVar/{varName}")
-    @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String getAllVariables(@PathParam("varName") String variableName) {
-
-        Map<String, String> environment = System.getenv();
-        return environment.get(variableName);
-    }
 
     @Path("/postgres")
     @GET
