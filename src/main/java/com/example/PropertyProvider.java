@@ -1,5 +1,7 @@
 package com.example;
 
+import java.util.logging.Logger;
+
 /**
  * Created by SIvantsov on 30.01.2015.
  */
@@ -9,10 +11,16 @@ public class PropertyProvider{
     public PropertyProvider()
     {
         if(propertyGetter == null) {
+            Logger logger = Logger.getLogger("PROPERTY GETTER LOGGER");
+
             if(System.getenv("TOMCAT_USER").equalsIgnoreCase("tomcat"))
-                propertyGetter = new JelasticGetter();
+            {propertyGetter = new JelasticGetter();
+                logger.info("Jelastic getter created.");}
             else
+            {
                 propertyGetter = new CloudFoundryGetter();
+                logger.info("CloudFoundry getter created.");
+            }
         }
     }
 
