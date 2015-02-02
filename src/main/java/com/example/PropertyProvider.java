@@ -13,7 +13,7 @@ public class PropertyProvider{
         if(propertyGetter == null) {
             Logger logger = Logger.getLogger("PROPERTY GETTER LOGGER");
 
-            if(System.getenv("TOMCAT_USER").equalsIgnoreCase("tomcat"))
+            if(System.getenv("TOMCAT_USER") != null)
             {propertyGetter = new JelasticGetter();
                 logger.info("Jelastic getter created.");}
             else
