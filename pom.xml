@@ -55,14 +55,23 @@
                 <configuration>
                     <target>https://api.run.pivotal.io</target>
 					<org>myTest-project.org</org>
-                    <space>development</space>
-                    <url>developmentWar.cfapps.io</url>
-                    <memory>512</memory>
+                    <space>${CF.environment}</space>
+                    <url>${CF.address}</url>
+					
+                    <!-- <space>development</space>
+                    <url>developmentWar.cfapps.io</url>-->
+					
+					<memory>512</memory>
                     <instances>1</instances>
 					<username>skidivay@gmail.com</username>
 					<password>debuborger411GGLOL</password>
                     <env>
-                        <greeting>Hello</greeting>
+                        <env_name>Cloud Foundry</env_name>
+						<pg_ip>babar.elephantsql.com</pg_ip>
+						<pg_port>5432</pg_port>
+						<pg_database>umufgngl</pg_database>
+						<pg_username>umufgngl</pg_username>
+						<pg_password>z4d1tHqKCCpFGu4qty9031AGYHwSEhO4</pg_password>
                     </env>
 
                     <services>
