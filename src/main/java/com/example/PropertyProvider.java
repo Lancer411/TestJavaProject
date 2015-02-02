@@ -21,7 +21,6 @@ public class PropertyProvider{
     {
         if(instance == null) {
             new PropertyProvider();
-            //change this to JelasticGetter to get another realisation
             if(System.getenv("TOMCAT_USER").equalsIgnoreCase("tomcat"))
                 propertyGetter = new JelasticGetter();
             else
