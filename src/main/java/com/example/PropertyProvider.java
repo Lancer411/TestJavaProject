@@ -19,7 +19,7 @@ public class PropertyProvider{
 
     public static synchronized PropertyProvider getInstance()
     {
-        if(instance == null) {
+        if(instance == null || propertyGetter == null) {
             new PropertyProvider();
             if(System.getenv("TOMCAT_USER").equalsIgnoreCase("tomcat"))
                 propertyGetter = new JelasticGetter();
