@@ -154,10 +154,11 @@ public class MyResource {
         PropertyProvider.setGetter(new JelasticGetter());
         return "Jelastic property getter set!";
     }
+
     @Path("/CloudFoundryProperties")
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    public String setCloudFoudnryGetter(){
+    public String setCloudFoudnryGetter() {
         PropertyProvider.setGetter(new CloudFoundryGetter());
         return "CloudFoundry property getter set!";
     }
